@@ -1,5 +1,5 @@
 {% set name = "allennlp" %}
-{% set version = "0.7.2" %}
+{% set version = "0.8.1" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 {% set spacy_model_version = "2.0.0" %}
@@ -11,7 +11,7 @@ package:
 source:
   - folder: {{ name }}
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: c51d32598ed0efb0599c15f463e2fe792e06d843964528b6bca9747b0d31be5c
+    sha256: 9d9d231d7c9cbad82178b566fdb25768e3d5098af23ce11e03ec4f432f4a2298
     patches:
       # Remove when allenai/allennlp#2232 is merged and released.
       - 0001-use-entry-points.diff
