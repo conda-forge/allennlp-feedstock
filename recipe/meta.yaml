@@ -1,8 +1,8 @@
 {% set name = "allennlp" %}
-{% set version = "0.7.2" %}
+{% set version = "0.8.4" %}
 
 {% set spacy_model = "en_core_web_sm" %}
-{% set spacy_model_version = "2.0.0" %}
+{% set spacy_model_version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -11,15 +11,15 @@ package:
 source:
   - folder: {{ name }}
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: c51d32598ed0efb0599c15f463e2fe792e06d843964528b6bca9747b0d31be5c
-    patches:
+    sha256: 53c9c36dac6599c8b1205dcdb4640a2147e23a746c47aeb69eb5cbd4288fbcea
+    #patches:
       # Remove when allenai/allennlp#2232 is merged and released.
-      - 0001-use-entry-points.diff
+      #- 0001-use-entry-points.diff
 
   # Spacy Model
   - folder: {{ spacy_model }}
     url: https://github.com/explosion/spacy-models/releases/download/{{ spacy_model }}-{{ spacy_model_version }}/{{ spacy_model }}-{{ spacy_model_version }}.tar.gz
-    sha256: 9d9d231d7c9cbad82178b566fdb25768e3d5098af23ce11e03ec4f432f4a2298
+    sha256: 4db16860a8cdef56d436038ace6abeb9181a5176bdc8c16c755a20dced51e5f1
 
 build:
   entry_points:
