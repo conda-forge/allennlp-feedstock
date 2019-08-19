@@ -36,39 +36,39 @@ requirements:
     - pip
   run:
     - python
-    - pytorch >=0.4.1,<0.5.0
-    - jsonnet ==0.10.0
+    - pytorch
+    - jsonnet
     - overrides
     - nltk
-    - msgpack-python >=0.5.6,<0.6.0
-    - spacy >=2.0,<2.1
+    - msgpack-python
+    - spacy
     - numpy
-    - tensorboardx ==1.2
-    - cffi 1.11.*
+    - tensorboardx
+    - cffi
     - awscli >=1.11.91
     - boto3
-    - moto ==1.3.4
-    - flask ==1.0.2
-    - flask-cors ==3.0.6
-    - gevent ==1.3.6
+    - moto
+    - flask
+    - flask-cors
+    - gevent
     - requests >=2.18
     - tqdm >=4.19
     - editdistance
     - h5py
     - scikit-learn
     - scipy
-    - pytz ==2017.3
+    - pytz
     - unidecode
-    - matplotlib ==2.2.3
+    - matplotlib
     - pytest
     - flaky
     - responses >=0.7
-    - numpydoc ==0.8.0
-    - conllu ==0.11
-    - parsimonious ==0.8.0
+    - numpydoc
+    - conllu
+    - parsimonious
     - ftfy
-    - sqlparse ==0.2.4
-    - pytorch-pretrained-bert ==0.1.2
+    - sqlparse
+    - pytorch-pretrained-bert
 
 test:
   source_files:
