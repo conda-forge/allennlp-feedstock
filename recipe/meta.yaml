@@ -82,7 +82,6 @@ test:
     - allennlp.commands
     - allennlp.common
     - allennlp.common.testing
-    - allennlp.custom_extensions
     - allennlp.data
     - allennlp.data.dataset_readers
     - allennlp.data.dataset_readers.coreference_resolution
