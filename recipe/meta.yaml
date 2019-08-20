@@ -36,7 +36,7 @@ requirements:
     - pip
   run:
     - python
-    - pytorch
+    - pytorch-cpu
     - jsonnet >=0.10.0
     - overrides
     - nltk
