@@ -12,9 +12,6 @@ source:
   - folder: {{ name }}
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: 53c9c36dac6599c8b1205dcdb4640a2147e23a746c47aeb69eb5cbd4288fbcea
-    #patches:
-      # Remove when allenai/allennlp#2232 is merged and released.
-      #- 0001-use-entry-points.diff
 
   # Spacy Model
   - folder: {{ spacy_model }}
@@ -129,7 +126,7 @@ test:
     - allennlp.training
     - allennlp.training.metrics
   requires:
-    - ipykernel <5.0.0
+    - ipykernel
     - jupyter
     - nltk_data
 
