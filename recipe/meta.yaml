@@ -68,6 +68,7 @@ requirements:
     - sqlparse >=0.2.4
     - pytorch-pretrained-bert >=0.6.0
     - word2number >=1.1
+    - jsonpickle
 
 test:
   source_files:
