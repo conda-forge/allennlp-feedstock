@@ -1,8 +1,8 @@
 {% set name = "allennlp" %}
-{% set version = "0.8.4" %}
+{% set version = "0.8.5" %}
 
 {% set spacy_model = "en_core_web_sm" %}
-{% set spacy_model_version = "2.1.0" %}
+{% set spacy_model_version = "2.2.0a7" %}
 
 package:
   name: {{ name|lower }}
@@ -34,7 +34,7 @@ requirements:
   run:
     - python
     - pip
-    - pytorch-cpu
+    - pytorch-cpu >=0.4.1,<1.2
     - jsonnet >=0.10.0
     - overrides
     - nltk
@@ -42,8 +42,6 @@ requirements:
     - spacy >=2.1.0,<2.2
     - numpy
     - tensorboardx >=1.2
-    - cffi
-    - awscli >=1.11.91
     - boto3
     - moto
     - flask >=1.0.2
