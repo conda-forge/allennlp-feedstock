@@ -1,5 +1,5 @@
 {% set name = "allennlp" %}
-{% set version = "0.8.5" %}
+{% set version = "0.8.4" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 {% set spacy_model_version = "2.1.0a7" %}
@@ -11,7 +11,7 @@ package:
 source:
   - folder: {{ name }}
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 8bf29092039fb8793ecc58fba361c9b3039b18934beffee3479354ff7d20d263
+    sha256: 53c9c36dac6599c8b1205dcdb4640a2147e23a746c47aeb69eb5cbd4288fbcea
 
   # Spacy Model
   - folder: {{ spacy_model }}
@@ -149,3 +149,4 @@ extra:
   recipe-maintainers:
     - CurtLH
     - sodre
+
