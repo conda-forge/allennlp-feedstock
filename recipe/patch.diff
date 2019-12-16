@@ -7,4 +7,4 @@ index 380fa64..a7bcc05 100644
 
  evalb: evalb.c
 -	gcc -Wall -g -o evalb evalb.c
-+	$CC -Wall -g -o evalb evalb.c
++	$(CC) -Wall -g -o evalb evalb.c
