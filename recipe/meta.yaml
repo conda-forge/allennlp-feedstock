@@ -22,7 +22,6 @@ build:
   entry_points:
     - allennlp=allennlp.run:run
   number: 0
-  script: "{{ PYTHON }} -m pip install ./{{ name }} --no-deps -vv"
   skip: True  # [not linux or py<36]
 
 requirements:
