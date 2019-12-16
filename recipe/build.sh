@@ -1,6 +1,6 @@
 pwd
 ls
-cd allennlp/tools/EVALB
+cd allennlp/allennlp/tools/EVALB
 make
 cd ../..
 pip install . --no-deps -vv"
