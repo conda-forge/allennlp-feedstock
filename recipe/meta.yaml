@@ -13,13 +13,12 @@ source:
   - folder: {{ name }}
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: 53c9c36dac6599c8b1205dcdb4640a2147e23a746c47aeb69eb5cbd4288fbcea
-
+    patches:
+      - patch.diff
   # Spacy Model
   - folder: {{ spacy_model }}
     url: https://github.com/explosion/spacy-models/releases/download/{{ spacy_model }}-{{ spacy_model_version }}/{{ spacy_model }}-{{ spacy_model_version }}.tar.gz
     sha256: 0b6264abb56aa6163dc431c98f625791945f225738c0906c09abfd763f655ec2
-    patches:
-      - patch.diff
     
 build:
   entry_points:
@@ -34,7 +33,7 @@ requirements:
     - python
     - pip
   run:
-      - {{ compiler('c') }}
+#    - {{ compiler('c') }}
     - python
     - pip
     - pytorch-cpu >=0.4.1,<1.2
