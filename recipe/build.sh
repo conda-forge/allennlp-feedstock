@@ -1,3 +1,4 @@
+export TARGET_ARCH=
 pwd
 ls
 cd allennlp/allennlp/tools/EVALB
