@@ -18,6 +18,9 @@ source:
     url: https://github.com/explosion/spacy-models/releases/download/{{ spacy_model }}-{{ spacy_model_version }}/{{ spacy_model }}-{{ spacy_model_version }}.tar.gz
     sha256: 0b6264abb56aa6163dc431c98f625791945f225738c0906c09abfd763f655ec2
 
+  patches:
+    - patch.diff
+    
 build:
   entry_points:
     - allennlp=allennlp.run:run
@@ -31,6 +34,7 @@ requirements:
     - python
     - pip
   run:
+      - {{ compiler('c') }}
     - python
     - pip
     - pytorch-cpu >=0.4.1,<1.2
