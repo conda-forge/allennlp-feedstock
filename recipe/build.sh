@@ -1,3 +1,5 @@
+pwd
+ls
 cd allennlp/tools/EVALB
 make
 cd ../..
