@@ -1,7 +1,7 @@
-diff --git a/Makefile b/Makefile
+diff --git a/allennlp/tools/EVALB/Makefile	 b/allennlp/tools/EVALB/Makefile	
 index 380fa64..a7bcc05 100644
---- a/Makefile
-+++ b/Makefile	
+--- a/allennlp/tools/EVALB/Makefile
++++ b/allennlp/tools/EVALB/Makefile
 @@ -4,4 +4,4 @@ clean:
  	rm -f evalb
 
