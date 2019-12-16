@@ -78,7 +78,8 @@ test:
   source_files:
     - {{ spacy_model }}
   commands:
-    - python -m spacy link {{ spacy_model }}/{{ spacy_model }} {{ spacy_model }} -f
+    # Don't believe this is necessary after 2.
+    #- python -m spacy link {{ spacy_model }}/{{ spacy_model }} {{ spacy_model }} -f
     - allennlp test-install
   imports:
     - allennlp
