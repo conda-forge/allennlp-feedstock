@@ -1,4 +1,4 @@
-export TARGET_ARCH=
+export PATH="${PATH}:${BUILD_PREFIX}/${HOST}/sysroot/usr/lib"
 pwd
 ls
 cd allennlp/allennlp/tools/EVALB
