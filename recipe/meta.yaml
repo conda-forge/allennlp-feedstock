@@ -73,7 +73,7 @@ requirements:
     - word2number >=1.1
     - perl
     - jsonpickle
-    - liblas
+    - libblas
     - libcblas
 
 test:
