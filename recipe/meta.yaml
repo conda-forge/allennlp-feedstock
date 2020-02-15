@@ -24,7 +24,7 @@ source:
 build:
   entry_points:
     - allennlp=allennlp.run:run
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install ./{{ name }} --no-deps -vv"
   skip: True  # [not linux or py<36]
 
@@ -59,7 +59,7 @@ requirements:
     - scipy
     - pytz ==2017.3
     - unidecode
-    - matplotlib ==2.2.3
+    - matplotlib-base ==2.2.3
     - pytest
     - flaky
     - responses >=0.7
