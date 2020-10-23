@@ -24,14 +24,10 @@ conda install --yes --quiet conda-forge-ci-setup=2 conda-build -c conda-forge
 # set up the condarc
 setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
-conda clean 
-
-run_conda_forge_build_setup# make the build number clobber
+run_conda_forge_build_setup # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 conda build "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
     --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
-
-
 
 touch "/home/conda/feedstock_root/build_artifacts/conda-forge-build-done-${CONFIG}"
