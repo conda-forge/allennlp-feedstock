@@ -37,7 +37,7 @@ requirements:
     - jsonnet >=0.10.0
     - overrides ==3.0.0
     - nltk
-    - spacy ==2.2.4
+    - spacy >=2.1.0
     - numpy
     - tensorboardx >=1.2
     - boto3
@@ -46,10 +46,10 @@ requirements:
     - h5py
     - scikit-learn
     - scipy
-    - pytz ==2017.3
     - pytest
     - jsonpickle
-    - transformers ==3.0.2
+    - dataclasses
+    - transformers 
     - filelock >=3.0,<3.1
 
 test:
