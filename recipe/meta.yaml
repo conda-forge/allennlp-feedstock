@@ -32,14 +32,14 @@ requirements:
     - pip
   run:
     - python
-    - pytorch >=1.5.0,<1.6.0
+    - pytorch >=1.6.0,<1.8.0
     - jsonnet >=0.10.0
-    - overrides ==3.0.0
+    - overrides ==3.1.0
     - nltk
-    - spacy >=2.1.0
+    - spacy >=2.1.0,<2.4
     - numpy
     - tensorboardx >=1.2
-    - boto3
+    - boto3 >=1.14,<2.0
     - requests >=2.18
     - tqdm >=4.19
     - h5py
@@ -47,9 +47,11 @@ requirements:
     - scipy
     - pytest
     - jsonpickle
-    - dataclasses
-    - transformers 
+    - dataclasses  # [py<37]
+    - transformers >=4.0,<4.1
     - filelock >=3.0,<3.1
+    - sentencepiece
+    - jsonpickle
 
 test:
   source_files:
