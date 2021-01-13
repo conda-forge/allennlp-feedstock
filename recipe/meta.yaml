@@ -60,55 +60,30 @@ test:
     - allennlp.commands
     - allennlp.common
     - allennlp.common.testing
-    - allennlp.custom_extensions
-    - allennlp.custom_extensions._ext
-    - allennlp.custom_extensions._ext.highway_lstm_layer
     - allennlp.data
     - allennlp.data.dataset_readers
-    - allennlp.data.dataset_readers.coreference_resolution
     - allennlp.data.dataset_readers.dataset_utils
-    - allennlp.data.dataset_readers.reading_comprehension
-    - allennlp.data.dataset_readers.semantic_parsing
-    - allennlp.data.dataset_readers.semantic_parsing.wikitables
     - allennlp.data.fields
-    - allennlp.data.iterators
+    - allennlp.data.samplers
     - allennlp.data.token_indexers
     - allennlp.data.tokenizers
     - allennlp.models
-    - allennlp.models.coreference_resolution
-    - allennlp.models.encoder_decoders
-    - allennlp.models.reading_comprehension
-    - allennlp.models.semantic_parsing
-    - allennlp.models.semantic_parsing.atis
-    - allennlp.models.semantic_parsing.nlvr
-    - allennlp.models.semantic_parsing.quarel
-    - allennlp.models.semantic_parsing.wikitables
     - allennlp.modules
     - allennlp.modules.attention
     - allennlp.modules.matrix_attention
     - allennlp.modules.seq2seq_encoders
     - allennlp.modules.seq2vec_encoders
-    - allennlp.modules.similarity_functions
     - allennlp.modules.span_extractors
     - allennlp.modules.text_field_embedders
     - allennlp.modules.token_embedders
     - allennlp.nn
     - allennlp.nn.regularizers
     - allennlp.predictors
-    - allennlp.semparse
-    - allennlp.semparse.contexts
-    - allennlp.semparse.executors
-    - allennlp.semparse.type_declarations
-    - allennlp.semparse.worlds
-    - allennlp.service
-    - allennlp.service.predictors
-    - allennlp.state_machines
-    - allennlp.state_machines.states
-    - allennlp.state_machines.trainers
-    - allennlp.state_machines.transition_functions
     - allennlp.tools
     - allennlp.training
+    - allennlp.training.learning_rate_schedulers
     - allennlp.training.metrics
+    - allennlp.training.momentum_schedulers
 
 about:
   home: https://allennlp.org/
