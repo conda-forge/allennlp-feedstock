@@ -7,15 +7,14 @@ package:
   version: {{ version }}
 
 source:
-  - folder: allennlp
-    url: https://pypi.io/packages/source/a/allennlp/allennlp-{{ version }}.tar.gz
+  - url: https://pypi.io/packages/source/a/allennlp/allennlp-{{ version }}.tar.gz
     sha256: 72c35c6996d3981335c10686bc2ff25e0f5b6b60617ab1dd26d5bcf74877137e
 
 build:
   entry_points:
     - allennlp=allennlp.run:run
   number: 0
-  script: "{{ PYTHON }} -m pip install ./allennlp --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   skip: True  # [not linux or py<36]
 
 requirements:
@@ -115,7 +114,7 @@ about:
   home: https://allennlp.org/
   license: Apache-2.0
   license_family: APACHE
-  license_file: allennlp/LICENSE
+  license_file: LICENSE
   summary: An open-source NLP research library, built on PyTorch.
   description: |
     An Apache 2.0 NLP research library, built on PyTorch, for developing state-of-the-art 
