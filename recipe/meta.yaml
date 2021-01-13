@@ -21,7 +21,7 @@ build:
   entry_points:
     - allennlp=allennlp.run:run
   number: 0
-  script: "{{ PYTHON }} -m pip install ./{{ name }} --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install ./allennlp --no-deps -vv"
   skip: True  # [not linux or py<36]
 
 requirements:
@@ -54,6 +54,10 @@ requirements:
     - jsonpickle
 
 test:
+  requires:
+    - ipykernel
+    - jupyter
+    - nltk_data
   source_files:
     - {{ spacy_model }}
   commands:
@@ -113,10 +117,6 @@ test:
     - allennlp.tools
     - allennlp.training
     - allennlp.training.metrics
-  requires:
-    - ipykernel <5.0.0
-    - jupyter
-    - nltk_data
 
 about:
   home: https://allennlp.org/
@@ -133,4 +133,4 @@ about:
 extra:
   recipe-maintainers:
     - CurtLH
-    - sodre 
+    - sodre
