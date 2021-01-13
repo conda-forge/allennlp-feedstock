@@ -156,5 +156,6 @@ Feedstock Maintainers
 =====================
 
 * [@CurtLH](https://github.com/CurtLH/)
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@sodre](https://github.com/sodre/)
 
