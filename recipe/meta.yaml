@@ -26,7 +26,7 @@ requirements:
   run:
     - python
     - pytorch >=1.6.0,<1.8.0
-    - jsonnet >=0.10.0
+    - jsonnet >=0.10.0          # [not win]
     - overrides ==3.1.0
     - nltk
     - spacy >=2.1.0,<2.4
@@ -40,8 +40,8 @@ requirements:
     - scipy
     - pytest
     - jsonpickle
-    - dataclasses  # [py<37]
-    - transformers >=4.0,<4.1
+    - dataclasses               # [py<37]
+    - transformers >=4.1,<4.3
     - filelock >=3.0,<3.1
     - sentencepiece
     - jsonpickle
