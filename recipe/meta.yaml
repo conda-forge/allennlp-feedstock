@@ -7,8 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/a/allennlp/allennlp-{{ version }}.tar.gz
-    sha256: e23b9c27807c520b031ddd7c6ad45984c033e74ace3572014d70a84304e3eb54
+  - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
+    sha256: f9d5a3e2cb865d576fce30efe2d9507bcc34ecec13d45b954a87e797cf1e83b0
 
 build:
   entry_points:
@@ -51,9 +51,12 @@ test:
     - nltk_data
     - pytest
     - spacy-model-{{ spacy_model }}
+  source_files:
+    - tests/
   commands:
     - python -m spacy link {{ spacy_model }} {{ spacy_model }}
     - allennlp test-install
+    - pytest tests/
   imports:
     - allennlp
     - allennlp.commands
