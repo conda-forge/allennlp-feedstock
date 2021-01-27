@@ -46,13 +46,14 @@ requirements:
 
 test:
   requires:
-    - ipykernel
-    - jupyter
-    - nltk_data
+    - flaky
+    - matplotlib
     - pytest
+    - responses >=0.12.1
     - spacy-model-{{ spacy_model }}
   source_files:
     - tests/
+    - test_fixtures/
   commands:
     - python -m spacy link {{ spacy_model }} {{ spacy_model }}
     - allennlp test-install
