@@ -1,4 +1,4 @@
-{% set version = "1.3.0" %}
+{% set version = "2.0.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,14 +8,14 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/a/allennlp/allennlp-{{ version }}.tar.gz
-    sha256: 72c35c6996d3981335c10686bc2ff25e0f5b6b60617ab1dd26d5bcf74877137e
+    sha256: e790944e9f97b4752fa3ca079631cf0ef0b75c0b7d6d6fc7495afe7f49467ed4
 
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
-  skip: True  # [not linux or py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [not linux or py<36]
 
 requirements:
   build:
