@@ -22,7 +22,7 @@ source:
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [not linux or py<36 or py==39]
 
@@ -56,7 +56,7 @@ requirements:
 test:
   requires:
     - flaky
-    - matplotlib
+    - matplotlib-base
     - pytest
     - responses >=0.12.1
     - spacy-model-{{ spacy_model }}
