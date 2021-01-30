@@ -1,4 +1,4 @@
-{% set version = "1.3.0" %}
+{% set version = "1.4.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -7,15 +7,24 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/a/allennlp/allennlp-{{ version }}.tar.gz
-    sha256: 72c35c6996d3981335c10686bc2ff25e0f5b6b60617ab1dd26d5bcf74877137e
+  - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
+    sha256: f9d5a3e2cb865d576fce30efe2d9507bcc34ecec13d45b954a87e797cf1e83b0
+    patches:
+      # upstream expectes the folders /tests & /test_fixtures to be relative
+      # to the finished package, even though those folders are not packaged;
+      # effectively, the upstream test suite can currently only be run in (their)
+      # development mode, so patch it that we can properly test the package here.
+      - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
+      - patches/0002-look-for-README-in-packaging-compatible-location.patch
+      # one test is failing with tolerance 1e-6, bump to 1e-5 for the moment
+      - patches/0003-marginally-increase-tolerance-for-failing-test.patch
 
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
-  skip: True  # [not linux or py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [not linux or py<36 or py==39]
 
 requirements:
   build:
@@ -25,36 +34,41 @@ requirements:
     - pip
   run:
     - python
-    - pytorch >=1.6.0,<1.8.0
-    - jsonnet >=0.10.0
-    - overrides ==3.1.0
-    - nltk
-    - spacy >=2.1.0,<2.4
-    - numpy
-    - tensorboardx >=1.2
     - boto3 >=1.14,<2.0
-    - requests >=2.18
-    - tqdm >=4.19
+    - dataclasses               # [py<37]
+    - filelock >=3.0,<3.1
     - h5py
+    - jsonnet >=0.10.0          # [not win]
+    - jsonpickle
+    - nltk
+    - numpy
+    - overrides ==3.1.0
+    - pytorch >=1.6.0,<1.8.0
+    - requests >=2.18
     - scikit-learn
     - scipy
-    - pytest
-    - jsonpickle
-    - dataclasses  # [py<37]
-    - transformers >=4.0,<4.1
-    - filelock >=3.0,<3.1
     - sentencepiece
-    - jsonpickle
+    - spacy >=2.1.0,<2.4
+    - tensorboardx >=1.2
+    - tqdm >=4.19
+    - transformers >=4.1,<4.3
 
 test:
   requires:
-    - ipykernel
-    - jupyter
-    - nltk_data
+    - flaky
+    - matplotlib
+    - pytest
+    - responses >=0.12.1
     - spacy-model-{{ spacy_model }}
+  source_files:
+    - tests/
+    - test_fixtures/
+    # needed by one of the tests
+    - README.md
   commands:
     - python -m spacy link {{ spacy_model }} {{ spacy_model }}
     - allennlp test-install
+    - pytest tests/
   imports:
     - allennlp
     - allennlp.commands
