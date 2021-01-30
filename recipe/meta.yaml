@@ -26,7 +26,7 @@ build:
     - allennlp=allennlp.__main__:run
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [osx or py==39]
+  skip: true  # [osx or py==39 or (win and py==36)]
 
 requirements:
   build:
