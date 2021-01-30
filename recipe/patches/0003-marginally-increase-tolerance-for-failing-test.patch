@@ -1,7 +1,7 @@
 From 7696c1897d6d9df7a1240201569e1e71c71735dd Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Sat, 30 Jan 2021 22:02:14 +0100
-Subject: [PATCH 3/3] marginally increase tolerance for failing test
+Subject: [PATCH 3/4] marginally increase tolerance for failing test
 
 ---
  tests/modules/seq2vec_encoders/cnn_encoder_test.py | 2 +-
