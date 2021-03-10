@@ -18,13 +18,15 @@ source:
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
       # one test is failing with tolerance 1e-6, bump to 1e-5 for the moment
       - patches/0003-marginally-increase-tolerance-for-failing-test.patch
+      # encoding problems on windows
+      - patches/0004-specify-utf8-for-file-open-to-be-compatible-with-win.patch
 
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [not linux or py<36 or py==39]
+  skip: true  # [osx or py==39 or (win and py==36)]
 
 requirements:
   build:
