@@ -1,4 +1,4 @@
-{% set version = "1.4.0" %}
+{% set version = "1.5.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: f9d5a3e2cb865d576fce30efe2d9507bcc34ecec13d45b954a87e797cf1e83b0
+    sha256: 7e6ce59bff25af285ec6aff5ba899d3bd3220fa1f218367ae24dddead5158cb8
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -48,7 +48,7 @@ requirements:
     - scikit-learn
     - scipy
     - sentencepiece
-    - spacy >=2.1.0,<2.4
+    - spacy >=2.1.0,<3.1
     - tensorboardx >=1.2
     - tqdm >=4.19
     - transformers >=4.1,<4.3
