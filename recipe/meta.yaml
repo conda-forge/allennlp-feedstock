@@ -1,4 +1,4 @@
-{% set version = "1.4.0" %}
+{% set version = "2.0.1" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: f9d5a3e2cb865d576fce30efe2d9507bcc34ecec13d45b954a87e797cf1e83b0
+    sha256: 20b38df2e8fc0a0f790597b0798b8a558d51853e68a87a9d55f1f798ce5e890f
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -40,6 +40,8 @@ requirements:
     - h5py
     - jsonnet >=0.10.0          # [not win]
     - jsonpickle
+    - python-lmdb
+    - more-itertools
     - nltk
     - numpy
     - overrides ==3.1.0
@@ -50,6 +52,7 @@ requirements:
     - sentencepiece
     - spacy >=2.1.0,<2.4
     - tensorboardx >=1.2
+    - torchvision >=0.8.1,<0.9.0
     - tqdm >=4.19
     - transformers >=4.1,<4.3
 
