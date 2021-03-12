@@ -40,7 +40,7 @@ requirements:
     - h5py
     - jsonnet >=0.10.0          # [not win]
     - jsonpickle
-    - lmdb
+    - python-lmdb
     - more-itertools
     - nltk
     - numpy
