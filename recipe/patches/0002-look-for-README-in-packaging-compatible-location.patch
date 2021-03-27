@@ -1,7 +1,7 @@
-From 751b259b55d8418f9afbb030f4f8eaf85175dbe8 Mon Sep 17 00:00:00 2001
+From d63de9a17c9ff7f4d439965291c16b2531394707 Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Sat, 30 Jan 2021 22:00:10 +0100
-Subject: [PATCH 2/3] look for README in packaging-compatible location
+Subject: [PATCH 2/2] look for README in packaging-compatible location
 
 ---
  tests/commands/cached_path_test.py | 3 ++-

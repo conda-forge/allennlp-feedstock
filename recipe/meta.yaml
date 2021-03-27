@@ -1,4 +1,4 @@
-{% set version = "2.1.0" %}
+{% set version = "2.2.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 7586f08b5a6b24e99fb0f43abe3c3bb81194ff50fe7bd768a8f1ad5f6b448a45
+    sha256: 4aac5011ece64a14890405bf4be2d23cd308ada9e27f9503c724b6bb15f1f101
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -16,19 +16,18 @@ source:
       # development mode, so patch it that we can properly test the package here.
       - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
-      # one test is failing with tolerance 1e-6, bump to 1e-5 for the moment
-      - patches/0003-marginally-increase-tolerance-for-failing-test.patch
 
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
-  skip: true  # [not linux or py<37 or py==39]
+  skip: true  # [not linux or py<36]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - sysroot_linux-64 ==2.17   # [linux64]
   host:
     - python
     - pip
@@ -45,16 +44,17 @@ requirements:
     - nltk
     - numpy
     - overrides ==3.1.0
-    - pytorch >=1.6.0,<1.8.0
+    - pytorch >=1.6.0,<1.9.0
     - requests >=2.18
     - scikit-learn
     - scipy
     - sentencepiece
     - spacy >=2.1.0,<3.1
     - tensorboardx >=1.2
-    - torchvision >=0.8.1,<0.9.0
+    - torchvision >=0.8.1,<0.10.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.3
+    - transformers >=4.1,<4.5
+    - wandb >=0.10,<0.11
 
 test:
   requires:
