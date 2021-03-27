@@ -16,8 +16,6 @@ source:
       # development mode, so patch it that we can properly test the package here.
       - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
-      # one test is failing with tolerance 1e-6, bump to 1e-5 for the moment
-      - patches/0003-marginally-increase-tolerance-for-failing-test.patch
 
 build:
   entry_points:
