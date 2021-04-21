@@ -72,7 +72,7 @@ test:
   commands:
     - python -m spacy link {{ spacy_model }} {{ spacy_model }}
     - allennlp test-install
-    - pytest tests/
+    - pytest tests/ -v
   imports:
     - allennlp
     - allennlp.commands
