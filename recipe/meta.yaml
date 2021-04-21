@@ -16,6 +16,8 @@ source:
       # development mode, so patch it that we can properly test the package here.
       - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
+      # skip test that runs into memory allocation errors on py37
+      - patches/0003-skip-test_loading_from_pretrained_weights_using_mode.patch  # [py37]
 
 build:
   entry_points:

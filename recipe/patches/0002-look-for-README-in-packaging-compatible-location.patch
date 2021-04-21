@@ -1,7 +1,7 @@
-From d63de9a17c9ff7f4d439965291c16b2531394707 Mon Sep 17 00:00:00 2001
+From c5ddd855f83305600c622988b26010e8a5a6df3b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Sat, 30 Jan 2021 22:00:10 +0100
-Subject: [PATCH 2/2] look for README in packaging-compatible location
+Subject: [PATCH 2/3] look for README in packaging-compatible location
 
 ---
  tests/commands/cached_path_test.py | 3 ++-
@@ -22,5 +22,5 @@ index 1a293d64..32f4986f 100644
          captured = capsys.readouterr()
          assert "README.md" in captured.out
 -- 
-2.29.2.windows.3
+2.31.1.windows.1
 
