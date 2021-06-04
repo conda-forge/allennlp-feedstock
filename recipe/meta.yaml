@@ -33,9 +33,12 @@ requirements:
     - pip
   run:
     - python
+    # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
     - boto3 >=1.14,<2.0
+    - checklist =0.0.11
     - dataclasses               # [py<37]
     - filelock >=3.0,<3.1
+    - google-cloud-storage >=1.38.0,<1.39.0
     - h5py
     - huggingface_hub >=0.0.8
     - jsonnet >=0.10.0          # [not win]
@@ -52,9 +55,10 @@ requirements:
     - sentencepiece
     - spacy >=2.1.0,<3.1
     - tensorboardx >=1.2
+    - termcolor =1.1.*
     - torchvision >=0.8.1,<0.10.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.6
+    - transformers >=4.1,<4.7
     - wandb >=0.10,<0.11
 
 test:
