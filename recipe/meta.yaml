@@ -1,4 +1,4 @@
-{% set version = "2.2.0" %}
+{% set version = "2.5.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 4aac5011ece64a14890405bf4be2d23cd308ada9e27f9503c724b6bb15f1f101
+    sha256: 938c7a1cecfa21023c81f7ddb0d746721bdadc9f9bd7f0b428055b8eb75a53bd
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -33,10 +33,16 @@ requirements:
     - pip
   run:
     - python
+    # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
     - boto3 >=1.14,<2.0
+    - checklist =0.0.11
+    # debug due to conda-forge/typer-feedstock#5
+    - click <7.2
     - dataclasses               # [py<37]
     - filelock >=3.0,<3.1
+    - google-cloud-storage >=1.38.0,<1.39.0
     - h5py
+    - huggingface_hub >=0.0.8
     - jsonnet >=0.10.0          # [not win]
     - jsonpickle
     - python-lmdb
@@ -51,9 +57,10 @@ requirements:
     - sentencepiece
     - spacy >=2.1.0,<3.1
     - tensorboardx >=1.2
+    - termcolor =1.1.*
     - torchvision >=0.8.1,<0.10.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.5
+    - transformers >=4.1,<4.7
     - wandb >=0.10,<0.11
 
 test:
@@ -71,7 +78,7 @@ test:
   commands:
     - python -m spacy link {{ spacy_model }} {{ spacy_model }}
     - allennlp test-install
-    - pytest tests/
+    - pytest tests/ -v
   imports:
     - allennlp
     - allennlp.commands
