@@ -36,6 +36,8 @@ requirements:
     # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
     - boto3 >=1.14,<2.0
     - checklist =0.0.11
+    # debug due to conda-forge/typer-feedstock#5
+    - click <7.2
     - dataclasses               # [py<37]
     - filelock >=3.0,<3.1
     - google-cloud-storage >=1.38.0,<1.39.0
