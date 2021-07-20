@@ -1,4 +1,4 @@
-{% set version = "2.5.0" %}
+{% set version = "2.6.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 938c7a1cecfa21023c81f7ddb0d746721bdadc9f9bd7f0b428055b8eb75a53bd
+    sha256: 50a47e32dc8a0619eb00cbf37062c4d828c4689260e875eadb6c3323f7d314f9
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -20,7 +20,7 @@ source:
 build:
   entry_points:
     - allennlp=allennlp.__main__:run
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [win or py<36]
 
