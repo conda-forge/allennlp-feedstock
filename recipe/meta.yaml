@@ -40,7 +40,7 @@ requirements:
     - click <7.2
     - dataclasses               # [py<37]
     - filelock >=3.0,<3.1
-    - google-cloud-storage >=1.38.0,<1.39.0
+    - google-cloud-storage >=1.38.0,<1.42.0
     - h5py
     - huggingface_hub >=0.0.8
     - jsonnet >=0.10.0          # [not win]
@@ -50,7 +50,7 @@ requirements:
     - nltk
     - numpy
     - overrides ==3.1.0
-    - pytorch >=1.6.0,<1.9.0
+    - pytorch >=1.6.0,<1.10.0
     - requests >=2.18
     - scikit-learn
     - scipy
@@ -58,10 +58,10 @@ requirements:
     - spacy >=2.1.0,<3.1
     - tensorboardx >=1.2
     - termcolor =1.1.*
-    - torchvision >=0.8.1,<0.10.0
+    - torchvision >=0.8.1,<0.11.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.7
-    - wandb >=0.10,<0.11
+    - transformers >=4.1,<4.9
+    - wandb >=0.10,<0.12
 
 test:
   requires:
