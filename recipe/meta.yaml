@@ -1,4 +1,4 @@
-{% set version = "2.6.0" %}
+{% set version = "2.7.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 50a47e32dc8a0619eb00cbf37062c4d828c4689260e875eadb6c3323f7d314f9
+    sha256: 50725f41bb24db06cd8cd68168eaeebf7bf5b8b5da476f06a011527ac766a11d
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
