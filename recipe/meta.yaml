@@ -34,13 +34,17 @@ requirements:
   run:
     - python
     # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
+    - base58
     - boto3 >=1.14,<2.0
     - checklist =0.0.11
     # debug due to conda-forge/typer-feedstock#5
     - click <7.2
     - dataclasses               # [py<37]
+    - datasets >=1.2.1,<2.0
+    - dill
+    - fairscale ==0.4.0
     - filelock >=3.0,<3.1
-    - google-cloud-storage >=1.38.0,<1.42.0
+    - google-cloud-storage >=1.38.0,<1.43
     - h5py
     - huggingface_hub >=0.0.8
     - jsonnet >=0.10.0          # [not win]
@@ -55,13 +59,14 @@ requirements:
     - scikit-learn
     - scipy
     - sentencepiece
-    - spacy >=2.1.0,<3.1
+    - spacy >=2.1.0,<3.2
+    - sqlitedict
     - tensorboardx >=1.2
     - termcolor =1.1.*
     - torchvision >=0.8.1,<0.11.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.9
-    - wandb >=0.10,<0.12
+    - transformers >=4.1,<4.10
+    - wandb >=0.10,<0.13
 
 test:
   requires:
