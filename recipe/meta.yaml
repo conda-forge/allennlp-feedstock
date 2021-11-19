@@ -40,13 +40,12 @@ requirements:
     - dataclasses               # [py<37]
     - datasets >=1.2.1,<2.0
     - dill
-    - fairscale ==0.4.0
+    - fairscale ==0.4.*
     - filelock >=3.0,<3.1
     - google-cloud-storage >=1.38.0,<1.43
     - h5py
     - huggingface_hub >=0.0.8
     - jsonnet >=0.10.0          # [not win]
-    - jsonpickle
     - python-lmdb
     - more-itertools
     - nltk
