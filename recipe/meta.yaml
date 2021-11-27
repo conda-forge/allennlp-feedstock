@@ -48,7 +48,7 @@ requirements:
     - datasets >=1.2.1,<2.0
     - dill
     - fairscale ==0.4.*
-    - filelock >=3.3,<3.4
+    - filelock >=3.3,<3.5
     - h5py
     - huggingface_hub >=0.0.16
     - jsonnet >=0.10.0          # [not win]
