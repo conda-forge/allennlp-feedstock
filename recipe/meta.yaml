@@ -16,6 +16,12 @@ source:
       # development mode, so patch it that we can properly test the package here.
       - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
+      # backport compatibility with fairscale 0.4.3 from allenai/allennlp#5461;
+      # can be dropped for v>2.8
+      - patches/0003-fix-FairScale-checkpoint-wrapper.patch
+      # backport compatibility with python 3.9 from allenai/allennlp#5489;
+      # can be dropped for v>2.8
+      - patches/0004-Makes-TensorCache-work-with-Python-3.9.patch
 
 build:
   entry_points:
