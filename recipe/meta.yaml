@@ -84,6 +84,8 @@ requirements:
 test:
   requires:
     - flaky
+    - git
+    - git-lfs
     - matplotlib
     - pytest
     - responses >=0.12.1
