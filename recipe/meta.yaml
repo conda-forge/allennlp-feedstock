@@ -22,6 +22,9 @@ source:
       # backport compatibility with python 3.9 from allenai/allennlp#5489;
       # can be dropped for v>2.8
       - patches/0004-Makes-TensorCache-work-with-Python-3.9.patch
+      # backport allenai/allennlp#5464 due to changed HF behaviour;
+      # can be dropped for v>2.8
+      - patches/0005-HF-now-raises-ValueError-5464.patch
 
 build:
   entry_points:

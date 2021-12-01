@@ -1,17 +1,17 @@
-From 035ad708efb4f17860b76f771c35e49fc7f797f1 Mon Sep 17 00:00:00 2001
+From 348fb7456cdb63799375f6683603391b0429a9f6 Mon Sep 17 00:00:00 2001
 From: Dirk Groeneveld <dirkg@allenai.org>
 Date: Tue, 30 Nov 2021 10:44:26 -0800
-Subject: [PATCH 4/4] Makes TensorCache work with Python 3.9
+Subject: [PATCH 4/5] Makes TensorCache work with Python 3.9
 
 ---
  allennlp/common/file_utils.py | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/allennlp/common/file_utils.py b/allennlp/common/file_utils.py
-index 9660eeb9..d0efd17c 100644
+index f9281747..ac724082 100644
 --- a/allennlp/common/file_utils.py
 +++ b/allennlp/common/file_utils.py
-@@ -596,9 +596,7 @@ class TensorCache(MutableMapping[str, Tensor], ABC):
+@@ -171,9 +171,7 @@ class TensorCache(MutableMapping[str, Tensor], ABC):
          except FileNotFoundError:
              result = None
          if result is None:
