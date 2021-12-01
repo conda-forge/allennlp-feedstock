@@ -75,6 +75,9 @@ requirements:
 # Path.unlink(missing_ok=...) not supported on python 3.7,
 # see https://github.com/allenai/allennlp/issues/5492
 {% set tests_to_skip = tests_to_skip + " or test_tango" %}  # [py==37]
+# some issue with too much forking (but is flaky, doesn't always appear):
+# `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
+{% set tests_to_skip = tests_to_skip + " or test_with_multi_process_loading" %}  # [osx]
 # fails on osx with `process 0 terminated with signal SIGSEGV` in torch.multiprocess
 {% set tests_to_skip = tests_to_skip + " or test_train_model_distributed_without_sharded_reader" %}  # [osx]
 
