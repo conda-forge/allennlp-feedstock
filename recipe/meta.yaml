@@ -1,4 +1,4 @@
-{% set version = "2.7.0" %}
+{% set version = "2.8.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 50725f41bb24db06cd8cd68168eaeebf7bf5b8b5da476f06a011527ac766a11d
+    sha256: 1febad722478f3a7b44ee028971455e30135a15b26b4b1f16630e5e88e9c4932
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -22,6 +22,9 @@ source:
       # backport compatibility with python 3.9 from allenai/allennlp#5489;
       # can be dropped for v>2.8
       - patches/0004-Makes-TensorCache-work-with-Python-3.9.patch
+      # backport allenai/allennlp#5464 due to changed HF behaviour;
+      # can be dropped for v>2.8
+      - patches/0005-HF-now-raises-ValueError-5464.patch
 
 build:
   entry_points:
@@ -42,22 +45,22 @@ requirements:
     # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
     - base58
     - boto3 >=1.14,<2.0
+    - cached_path >=0.3.1,<0.4
     - checklist =0.0.11
     - dataclasses               # [py<37]
     - datasets >=1.2.1,<2.0
     - dill
     - fairscale ==0.4.*
-    - filelock >=3.0,<3.1
-    - google-cloud-storage >=1.38.0,<1.43
+    - filelock >=3.3,<3.5
     - h5py
-    - huggingface_hub >=0.0.8
+    - huggingface_hub >=0.0.16
     - jsonnet >=0.10.0          # [not win]
     - python-lmdb
     - more-itertools
     - nltk
     - numpy
     - overrides ==3.1.0
-    - pytorch >=1.6.0,<1.10.0
+    - pytorch >=1.6.0,<1.11.0
     - requests >=2.18
     - scikit-learn
     - scipy
@@ -66,9 +69,9 @@ requirements:
     - sqlitedict
     - tensorboardx >=1.2
     - termcolor =1.1.*
-    - torchvision >=0.8.1,<0.11.0
+    - torchvision >=0.8.1,<0.12.0
     - tqdm >=4.19
-    - transformers >=4.1,<4.10
+    - transformers >=4.1,<4.13
     - wandb >=0.10,<0.13
 
 {% set tests_to_skip = "_not_a_real_test" %}
@@ -77,6 +80,7 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_tango" %}  # [py==37]
 # some issue with too much forking (but is flaky, doesn't always appear):
 # `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
+{% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
 {% set tests_to_skip = tests_to_skip + " or test_with_multi_process_loading" %}  # [osx]
 # fails on osx with `process 0 terminated with signal SIGSEGV` in torch.multiprocess
 {% set tests_to_skip = tests_to_skip + " or test_train_model_distributed_without_sharded_reader" %}  # [osx]
@@ -84,6 +88,8 @@ requirements:
 test:
   requires:
     - flaky
+    - git
+    - git-lfs
     - matplotlib
     - pytest
     - responses >=0.12.1

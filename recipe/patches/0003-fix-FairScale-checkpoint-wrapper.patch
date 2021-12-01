@@ -1,7 +1,7 @@
-From 3616eba72a8b25db479251d328eef1064d65a184 Mon Sep 17 00:00:00 2001
+From 894486115541c84d3f4d050e3aeecd8bca41230e Mon Sep 17 00:00:00 2001
 From: epwalsh <petew@allenai.org>
 Date: Mon, 15 Nov 2021 18:13:40 +0000
-Subject: [PATCH 3/4] fix FairScale checkpoint wrapper
+Subject: [PATCH 3/5] fix FairScale checkpoint wrapper
 
 ---
  .../fairscale_checkpoint_wrapper.py           | 19 +------------------
