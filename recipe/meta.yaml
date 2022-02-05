@@ -34,35 +34,31 @@ requirements:
   run:
     - python
     # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
+    # (as of 2.9.0, removed dataclasses (obsolete) & pytest compared to upstream)
     - base58
-    - boto3 >=1.14,<2.0
-    - cached_path >=0.3.1,<0.4
+    - cached_path >=1.0.2,<2
     - checklist =0.0.11
-    - dataclasses               # [py<37]
-    - datasets >=1.2.1,<2.0
     - dill
-    - fairscale ==0.4.*
+    - fairscale ==0.4.5
     - filelock >=3.3,<3.5
     - h5py
     - huggingface_hub >=0.0.16
     - jsonnet >=0.10.0          # [not win]
     - python-lmdb
     - more-itertools
-    - nltk
+    - nltk <3.6.6
     - numpy
-    - overrides ==3.1.0
     - pytorch >=1.6.0,<1.11.0
     - requests >=2.18
     - scikit-learn
     - scipy
     - sentencepiece
-    - spacy >=2.1.0,<3.2
-    - sqlitedict
+    - spacy >=2.1.0,<3.3
     - tensorboardx >=1.2
     - termcolor =1.1.*
     - torchvision >=0.8.1,<0.12.0
-    - tqdm >=4.19
-    - transformers >=4.1,<4.13
+    - tqdm >=4.62
+    - transformers >=4.1,<4.16
     - wandb >=0.10,<0.13
 
 {% set tests_to_skip = "_not_a_real_test" %}
