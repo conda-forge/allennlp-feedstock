@@ -1,7 +1,7 @@
-From 32029acf9dd603a61a5e9061d765835df299e5b0 Mon Sep 17 00:00:00 2001
+From 759b997bdc6687b5c8f6e1459cf46122161787ce Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Wed, 27 Jan 2021 12:52:03 +0100
-Subject: [PATCH 1/5] patch AllenNlpTestCase so that test-suite can be run with
+Subject: [PATCH 1/2] patch AllenNlpTestCase so that test-suite can be run with
  finished package
 
 ---
@@ -9,7 +9,7 @@ Subject: [PATCH 1/5] patch AllenNlpTestCase so that test-suite can be run with
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/allennlp/common/testing/test_case.py b/allennlp/common/testing/test_case.py
-index 9f466e8e..21c4a7db 100644
+index b3c4cbd0..9470e5dc 100644
 --- a/allennlp/common/testing/test_case.py
 +++ b/allennlp/common/testing/test_case.py
 @@ -18,8 +18,13 @@ class AllenNlpTestCase:
