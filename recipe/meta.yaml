@@ -1,4 +1,4 @@
-{% set version = "2.8.0" %}
+{% set version = "2.9.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 1febad722478f3a7b44ee028971455e30135a15b26b4b1f16630e5e88e9c4932
+    sha256: 3e902fe381ebd915dda615476b84b68949ae9607193a915a5dbdc5d86c156b0c
     patches:
       # upstream expectes the folders /tests & /test_fixtures to be relative
       # to the finished package, even though those folders are not packaged;
@@ -16,15 +16,6 @@ source:
       # development mode, so patch it that we can properly test the package here.
       - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
       - patches/0002-look-for-README-in-packaging-compatible-location.patch
-      # backport compatibility with fairscale 0.4.3 from allenai/allennlp#5461;
-      # can be dropped for v>2.8
-      - patches/0003-fix-FairScale-checkpoint-wrapper.patch
-      # backport compatibility with python 3.9 from allenai/allennlp#5489;
-      # can be dropped for v>2.8
-      - patches/0004-Makes-TensorCache-work-with-Python-3.9.patch
-      # backport allenai/allennlp#5464 due to changed HF behaviour;
-      # can be dropped for v>2.8
-      - patches/0005-HF-now-raises-ValueError-5464.patch
 
 build:
   entry_points:
@@ -43,41 +34,34 @@ requirements:
   run:
     - python
     # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
+    # (as of 2.9.0, removed dataclasses (obsolete) & pytest compared to upstream)
     - base58
-    - boto3 >=1.14,<2.0
-    - cached_path >=0.3.1,<0.4
+    - cached_path >=1.0.2,<2
     - checklist =0.0.11
-    - dataclasses               # [py<37]
-    - datasets >=1.2.1,<2.0
     - dill
-    - fairscale ==0.4.*
+    - fairscale ==0.4.5
     - filelock >=3.3,<3.5
     - h5py
     - huggingface_hub >=0.0.16
     - jsonnet >=0.10.0          # [not win]
     - python-lmdb
     - more-itertools
-    - nltk
+    - nltk <3.6.6
     - numpy
-    - overrides ==3.1.0
     - pytorch >=1.6.0,<1.11.0
     - requests >=2.18
     - scikit-learn
     - scipy
     - sentencepiece
-    - spacy >=2.1.0,<3.2
-    - sqlitedict
+    - spacy >=2.1.0,<3.3
     - tensorboardx >=1.2
     - termcolor =1.1.*
     - torchvision >=0.8.1,<0.12.0
-    - tqdm >=4.19
-    - transformers >=4.1,<4.13
+    - tqdm >=4.62
+    - transformers >=4.1,<4.16
     - wandb >=0.10,<0.13
 
 {% set tests_to_skip = "_not_a_real_test" %}
-# Path.unlink(missing_ok=...) not supported on python 3.7,
-# see https://github.com/allenai/allennlp/issues/5492
-{% set tests_to_skip = tests_to_skip + " or test_tango" %}  # [py==37]
 # some issue with too much forking (but is flaky, doesn't always appear):
 # `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
 {% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
