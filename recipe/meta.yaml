@@ -62,9 +62,6 @@ requirements:
     - wandb >=0.10,<0.13
 
 {% set tests_to_skip = "_not_a_real_test" %}
-# Path.unlink(missing_ok=...) not supported on python 3.7,
-# see https://github.com/allenai/allennlp/issues/5492
-{% set tests_to_skip = tests_to_skip + " or test_tango" %}  # [py==37]
 # some issue with too much forking (but is flaky, doesn't always appear):
 # `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
 {% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
