@@ -79,7 +79,7 @@ outputs:
         - wandb >=0.10,<0.13
 
     # checklist-specific tests in separate output
-    {% set tests_to_skip = "checklist" %}
+    {% set tests_to_skip = "_not_a_real_test" %}
     # some issue with too much forking (but is flaky, doesn't always appear):
     # `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
     {% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
@@ -106,7 +106,7 @@ outputs:
         # test that dummy command works even without checklist package
         - allennlp checklist
         - allennlp test-install
-        - pytest tests/ -v -k "not ({{ tests_to_skip }})"
+        - pytest tests/ -v -k "not ({{ tests_to_skip }})" --ignore-glob=*checklist*
       imports:
         - allennlp
         - allennlp.commands
