@@ -9,13 +9,6 @@ package:
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
     sha256: 3c0482b9ccc4ca355380a42537ad520547acf060519169d4134035bbfa5f3763
-    patches:
-      # upstream expectes the folders /tests & /test_fixtures to be relative
-      # to the finished package, even though those folders are not packaged;
-      # effectively, the upstream test suite can currently only be run in (their)
-      # development mode, so patch it that we can properly test the package here.
-      - patches/0001-patch-AllenNlpTestCase-so-that-test-suite-can-be-run.patch
-      - patches/0002-look-for-README-in-packaging-compatible-location.patch
 
 build:
   entry_points:
