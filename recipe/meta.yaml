@@ -158,6 +158,9 @@ outputs:
         - tests/
         - test_fixtures/
       commands:
+        # download necessary nltk packages; taken from
+        # https://github.com/allenai/allennlp/blob/v2.9.1/Makefile#L28
+        - python -c 'import nltk; [nltk.download(p) for p in ("wordnet", "wordnet_ic", "sentiwordnet", "omw", "omw-1.4")]'
         - allennlp checklist --help
         - pytest tests/ -v -k "checklist"
 
