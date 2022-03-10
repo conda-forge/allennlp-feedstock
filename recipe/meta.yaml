@@ -3,7 +3,7 @@
 {% set spacy_model = "en_core_web_sm" %}
 
 package:
-  name: allennlp
+  name: allennlp-split
   version: {{ version }}
 
 source:
@@ -11,10 +11,7 @@ source:
     sha256: 3c0482b9ccc4ca355380a42537ad520547acf060519169d4134035bbfa5f3763
 
 build:
-  entry_points:
-    - allennlp=allennlp.__main__:run
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
   skip: true  # [win or py<37]
 
 requirements:
@@ -23,95 +20,143 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
     - sysroot_linux-64 ==2.17   # [linux64]
-  host:
-    - python
-    - pip
-  run:
-    - python
-    # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
-    # (as of 2.9.1, removed dataclasses (obsolete) & pytest compared to upstream)
-    - base58
-    - cached_path >=1.0.2,<1.2.0
-    - datasets>=1.2.1,<2.0
-    - dill
-    - fairscale ==0.4.5
-    - filelock >=3.3,<3.7
-    - h5py
-    - huggingface_hub >=0.0.16
-    - jsonnet >=0.10.0          # [not win]
-    - python-lmdb
-    - more-itertools
-    - nltk
-    - numpy
-    - pytorch >=1.6.0,<1.11.0
-    - requests >=2.18
-    - scikit-learn
-    - scipy
-    - sentencepiece
-    - spacy >=2.1.0,<3.3
-    - sqlitedict
-    - tensorboardx >=1.2
-    - termcolor =1.1.*
-    - torchvision >=0.8.1,<0.12.0
-    - tqdm >=4.62
-    - transformers >=4.1,<4.17
-    - wandb >=0.10,<0.13
 
-{% set tests_to_skip = "_not_a_real_test" %}
-# some issue with too much forking (but is flaky, doesn't always appear):
-# `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
-{% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_with_multi_process_loading" %}  # [osx]
-# fails on osx with `process 0 terminated with signal SIGSEGV` in torch.multiprocess
-{% set tests_to_skip = tests_to_skip + " or test_train_model_distributed_without_sharded_reader" %}  # [osx]
+outputs:
+  - name: allennlp-all
+    requirements:
+      host:
+        - python
+      run:
+        - python
+        - {{ pin_subpackage('allennlp', exact=True) }}
+        - {{ pin_subpackage('allennlp-checklist', exact=True) }}
+    test:
+      imports:
+        - allennlp
 
-test:
-  requires:
-    - flaky
-    - git
-    - git-lfs
-    - matplotlib
-    - pytest
-    - responses >=0.12.1
-    - spacy-model-{{ spacy_model }}
-  source_files:
-    - tests/
-    - test_fixtures/
-    # needed by one of the tests
-    - README.md
-  commands:
-    - python -m spacy link {{ spacy_model }} {{ spacy_model }}
-    - allennlp test-install
-    - pytest tests/ -v -k "not ({{ tests_to_skip }})"
-  imports:
-    - allennlp
-    - allennlp.commands
-    - allennlp.common
-    - allennlp.common.testing
-    - allennlp.data
-    - allennlp.data.dataset_readers
-    - allennlp.data.dataset_readers.dataset_utils
-    - allennlp.data.fields
-    - allennlp.data.samplers
-    - allennlp.data.token_indexers
-    - allennlp.data.tokenizers
-    - allennlp.models
-    - allennlp.modules
-    - allennlp.modules.attention
-    - allennlp.modules.matrix_attention
-    - allennlp.modules.seq2seq_encoders
-    - allennlp.modules.seq2vec_encoders
-    - allennlp.modules.span_extractors
-    - allennlp.modules.text_field_embedders
-    - allennlp.modules.token_embedders
-    - allennlp.nn
-    - allennlp.nn.regularizers
-    - allennlp.predictors
-    - allennlp.tools
-    - allennlp.training
-    - allennlp.training.learning_rate_schedulers
-    - allennlp.training.metrics
-    - allennlp.training.momentum_schedulers
+  - name: allennlp
+    build:
+      script: {{ PYTHON }} -m pip install . --no-deps -vv
+      entry_points:
+        - allennlp=allennlp.__main__:run
+    requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - {{ compiler('c') }}
+      host:
+        - python
+        - pip
+      run:
+        - python
+        # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
+        # (as of 2.9.1, removed dataclasses (obsolete) & pytest compared to upstream)
+        - base58
+        - cached_path >=1.0.2,<1.2.0
+        - datasets>=1.2.1,<2.0
+        - dill
+        - fairscale ==0.4.5
+        - filelock >=3.3,<3.7
+        - h5py
+        - huggingface_hub >=0.0.16
+        - jsonnet >=0.10.0          # [not win]
+        - python-lmdb
+        - more-itertools
+        - nltk
+        - numpy
+        - pytorch >=1.6.0,<1.11.0
+        - requests >=2.18
+        - scikit-learn
+        - scipy
+        - sentencepiece
+        - spacy >=2.1.0,<3.3
+        - sqlitedict
+        - tensorboardx >=1.2
+        - termcolor =1.1.*
+        - torchvision >=0.8.1,<0.12.0
+        - tqdm >=4.62
+        - transformers >=4.1,<4.17
+        - wandb >=0.10,<0.13
+
+    # checklist-specific tests in separate output
+    {% set tests_to_skip = "checklist" %}
+    # some issue with too much forking (but is flaky, doesn't always appear):
+    # `The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...`
+    {% set tests_to_skip = tests_to_skip + " or test_multiprocess_data_loader" %}    # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_with_multi_process_loading" %}  # [osx]
+    # fails on osx with `process 0 terminated with signal SIGSEGV` in torch.multiprocess
+    {% set tests_to_skip = tests_to_skip + " or test_train_model_distributed_without_sharded_reader" %}  # [osx]
+
+    test:
+      requires:
+        - flaky
+        - git
+        - git-lfs
+        - matplotlib
+        - pytest
+        - responses >=0.12.1
+        - spacy-model-{{ spacy_model }}
+      source_files:
+        - tests/
+        - test_fixtures/
+        # needed by one of the tests
+        - README.md
+      commands:
+        - python -m spacy link {{ spacy_model }} {{ spacy_model }}
+        - allennlp test-install
+        - pytest tests/ -v -k "not ({{ tests_to_skip }})"
+      imports:
+        - allennlp
+        - allennlp.commands
+        - allennlp.common
+        - allennlp.common.testing
+        - allennlp.data
+        - allennlp.data.dataset_readers
+        - allennlp.data.dataset_readers.dataset_utils
+        - allennlp.data.fields
+        - allennlp.data.samplers
+        - allennlp.data.token_indexers
+        - allennlp.data.tokenizers
+        - allennlp.models
+        - allennlp.modules
+        - allennlp.modules.attention
+        - allennlp.modules.matrix_attention
+        - allennlp.modules.seq2seq_encoders
+        - allennlp.modules.seq2vec_encoders
+        - allennlp.modules.span_extractors
+        - allennlp.modules.text_field_embedders
+        - allennlp.modules.token_embedders
+        - allennlp.nn
+        - allennlp.nn.regularizers
+        - allennlp.predictors
+        - allennlp.tools
+        - allennlp.training
+        - allennlp.training.learning_rate_schedulers
+        - allennlp.training.metrics
+        - allennlp.training.momentum_schedulers
+
+  - name: allennlp-checklist
+    requirements:
+      host:
+        - python
+      run:
+        - python
+        - {{ pin_subpackage('allennlp', exact=True) }}
+        - checklist =0.0.11
+    test:
+      requires:
+        - flaky
+        - git
+        - git-lfs
+        - matplotlib
+        - pytest
+        - responses >=0.12.1
+        - spacy-model-{{ spacy_model }}
+      source_files:
+        - tests/
+        - test_fixtures/
+      commands:
+        - pytest tests/ -v -k "checklist"
 
 about:
   home: https://allennlp.org/
@@ -131,3 +176,4 @@ extra:
     - sodre
     - h-vetinari
     - dirkgr
+  feedstock-name: allennlp
