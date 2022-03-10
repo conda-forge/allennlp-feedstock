@@ -103,6 +103,8 @@ outputs:
         - README.md
       commands:
         - python -m spacy link {{ spacy_model }} {{ spacy_model }}
+        # test that dummy command works even without checklist package
+        - allennlp checklist
         - allennlp test-install
         - pytest tests/ -v -k "not ({{ tests_to_skip }})"
       imports:
@@ -156,6 +158,7 @@ outputs:
         - tests/
         - test_fixtures/
       commands:
+        - allennlp checklist --help
         - pytest tests/ -v -k "checklist"
 
 about:
