@@ -9,6 +9,9 @@ package:
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
     sha256: 3c0482b9ccc4ca355380a42537ad520547acf060519169d4134035bbfa5f3763
+    patches:
+      # backport allenai/allennlp#5589, can be dropped for v>2.9.1
+      - patches/0001-Fix-CLI-and-install-instructions-in-case-optional-ch.patch
 
 build:
   number: 0
