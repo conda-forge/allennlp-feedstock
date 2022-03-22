@@ -1,4 +1,4 @@
-{% set version = "2.9.1" %}
+{% set version = "2.9.2" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,10 +8,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 3c0482b9ccc4ca355380a42537ad520547acf060519169d4134035bbfa5f3763
-    patches:
-      # backport allenai/allennlp#5589, can be dropped for v>2.9.1
-      - patches/0001-Fix-CLI-and-install-instructions-in-case-optional-ch.patch
+    sha256: 05b05a756af6ca747d64a16345e6e594f51a05d87ba2cc789034c3265f2d3f52
 
 build:
   number: 0
@@ -53,11 +50,11 @@ outputs:
       run:
         - python
         # see https://github.com/allenai/allennlp/blame/v{{ version }}/setup.py
-        # (as of 2.9.1, removed dataclasses (obsolete) & pytest compared to upstream)
+        # (as of 2.9.2, removed dataclasses (obsolete) & pytest compared to upstream)
         - base58
         - cached_path >=1.0.2,<1.2.0
         - dill
-        - fairscale ==0.4.5
+        - fairscale ==0.4.6
         - filelock >=3.3,<3.7
         - h5py
         - huggingface_hub >=0.0.16
@@ -66,7 +63,7 @@ outputs:
         - more-itertools
         - nltk
         - numpy
-        - pytorch >=1.6.0,<1.11.0
+        - pytorch >=1.6.0,<1.12.0
         - requests >=2.18
         - scikit-learn
         - scipy
@@ -74,9 +71,9 @@ outputs:
         - spacy >=2.1.0,<3.3
         - tensorboardx >=1.2
         - termcolor =1.1.*
-        - torchvision >=0.8.1,<0.12.0
+        - torchvision >=0.8.1,<0.13.0
         - tqdm >=4.62
-        - transformers >=4.1,<4.17
+        - transformers >=4.1,<4.18
         - wandb >=0.10,<0.13
 
     # checklist-specific tests in separate output
