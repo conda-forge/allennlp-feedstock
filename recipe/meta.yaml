@@ -1,4 +1,5 @@
-{% set version = "2.9.3" %}
+{% set tests_to_skip = "_not_a_real_test" %}
+{% set version = "2.10.0" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -8,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 24afdec4c9f9be039fbddd150d1f29e356e47a0d48eb20244c8db14263210f96
+    sha256: 4b4d3dcab5686de1218490349d5cf9e9e437625fe24ac0553dfc9a37fb1bf725
 
 build:
   number: 0
