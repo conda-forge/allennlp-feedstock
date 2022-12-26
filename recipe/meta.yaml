@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "2.10.0" %}
+{% set version = "2.10.1" %}
 
 {% set spacy_model = "en_core_web_sm" %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/allenai/allennlp/archive/v{{ version }}.tar.gz
-    sha256: 4b4d3dcab5686de1218490349d5cf9e9e437625fe24ac0553dfc9a37fb1bf725
+    sha256: d21484f91ca51f24b45a9e252847f3daaae03f588568718ad202e42901f98c1f
 
 build:
   number: 0
@@ -62,7 +62,7 @@ outputs:
         - huggingface_hub >=0.0.16
         - jsonnet >=0.10.0          # [not win]
         - python-lmdb >=1.2.1
-        - more-itertools >=8.12 
+        - more-itertools >=8.12
         - nltk >=3.6.5
         - numpy
         - pytorch >=1.8.0,<1.12.0
